@@ -153,10 +153,45 @@ object EMail {
   }
 }
 
-val apply = EMail("duc", "gmail")
+object Demo {
+  def main(args: Array[String]) {
+    val x = Demo(5)
+    println(x)
 
-apply match {
-  case EMail("duc", "gmail") =>
-  case _ => None
+    x match {
+      case Demo(num) => println(x+" is bigger two times than "+num)
 
+      //unapply is invoked
+      case _ => println("i cannot calculate")
+    }
+  }
+  def apply(x: Int) = x*2
+  def unapply(z: Int): Option[Int] = if (z%2==0) Some(z/2) else None
 }
+
+//Extractor in Pattern Matching
+object Twice {
+  def apply(s: String): String = s + s
+
+  def unapply(s: String): Option[String] = {
+    val halfLength = s.length/2
+    val half = s.substring(0,halfLength)
+    if (half == s.substring(halfLength)) Some(half) else None
+  }
+}
+
+object UpperCase {
+  def unapply(a: String): Boolean = {
+    if (a.toUpperCase == a) true
+    else false
+  }
+}
+
+def userTwiceUpper(s:String) = s match  {
+  case EMail(Twice(x @ UpperCase()), domain) => "match: " + x + " in domain" + domain
+  case _ => "no match"
+}
+
+userTwiceUpper("DIDI@hotmail.com");
+
+//first-class functions

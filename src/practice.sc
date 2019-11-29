@@ -46,3 +46,19 @@ def checkPrimeAndPrint(n: Int) = {
 
 }
 checkPrimeAndPrint(8)
+
+
+///HaNoi tower
+var count = 0
+def haNoiTower(n: Int, source: String, destination: String, auxiliary : String): Unit =
+  n match {
+    case 1 => println(s" move from $source to $destination"); count += 1
+    case _ => {
+      haNoiTower(n-1, source, auxiliary, destination)
+      haNoiTower(1, source, destination, auxiliary)
+      haNoiTower(n-1, auxiliary, destination, source)
+    }
+  }
+
+haNoiTower(3, "A", "C", "B")
+println("total:" + count)
