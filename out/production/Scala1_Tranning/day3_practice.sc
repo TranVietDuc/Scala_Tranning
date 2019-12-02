@@ -82,6 +82,7 @@ transfer
 
 //tetPackage
 
-print(new NormalUser.print
+val me =new NormalUser
+me.printName("duc")
 
 

@@ -1,16 +1,24 @@
-import java.io._
+def sumAll(a: Int, b: Int): Int = {
+  (a <= b) match {
+    case true => (0 /: (a to b)) (_ + _)
+    case false => sumAll(b, a)
+  }
+}
+sumAll(4,1)
 
-object Solution {
-  // Answer
-  def bubbleSort(arr: Array[Int]): Array[Int] = {
-      for (i <- 1 to arr.length; j <- 1 to arr.length -1)
-        if (arr(j-1) > arr(j)) {
-          val temp = arr(j)
-          arr(j) = arr(j-1)
-          arr(j-1) = temp
-        } yeil
+
+def timeConversion(a: String): String = {
+  var split = a.split(":")
+  if(split(0).equals("12") && split(2).endsWith("AM")) "00" + ":" + split(1) + ":" + split(2).substring(0,2)
+  else if (split(2).endsWith("PM") && !split(0).equals("12")) (split(0).toInt + 12) + ":" + split(1) + ":" + split(2).substring(0,2)
+  else split(0) + ":" + split(1) + ":" + split(2).substring(0,2)
 
 }
 
-val array = Array(7,2,6,4)
-Solution.bubbleSort(array)
+timeConversion("07:05:45PM")
+timeConversion("12:40:22AM")
+
+def jumpingOnClouds(a: Array[Int]): Int = {
+  val a1 = a.filter(b => b == 0).zipWithIndex.map(c => c._2)
+
+}
