@@ -140,4 +140,10 @@ def sumAll(a: Int, b: Int): Int = {
   (0 /: (a to b).sorted)(_ + _)
 }
 
-sumAll(,
+
+val he = (4 to 1).sorted
+he
+sumAll(1,4)
+
+//Folding lists
+// /: fold left, :\ fold right
